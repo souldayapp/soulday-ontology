@@ -1,0 +1,51 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2818
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26\fsmilli13333 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 %% Soulday.app \'96 Entity Relationship Diagram v1.0\
+erDiagram\
+    User ||--o\{ PersonalityProfile : "has"\
+    User ||--o\{ ContextPreference : "prefers"\
+    User ||--o\{ VerificationBadge : "holds (0\'963 stars)"\
+    User ||--o\{ Match : "participates in"\
+    User ||--o\{ ReportedIssue : "reports / is target"\
+    PersonalityProfile \}|--|| PersonalityType : "classified as (59 types)"\
+    PersonalityType \}|--|\{ CompatibilityMatrix : "has compatibility entry"\
+    CompatibilityMatrix \}o--|| ContextPreference : "context-aware"\
+    Match \}|--|| Interaction : "generates"\
+    SystemConfig ||--o\{ "all entities" : "configures"\
+\
+    User \{\
+        string userId PK\
+        string username\
+        int verificationLevel "0\'963"\
+        float trustScore "0\'96100"\
+        timestamp createdAt\
+    \}\
+    PersonalityProfile \{\
+        string profileId PK\
+        jsonb bigFiveVector\
+        string mbtiType\
+        string enneagramType\
+        int primaryPersonalityTypeId\
+    \}\
+    PersonalityType \{\
+        string personalityTypeId PK "PT01..PT59"\
+        string name\
+        string description\
+        string keywords\
+    \}\
+    CompatibilityMatrix \{\
+        string matrixEntryId PK\
+        string typeAId FK\
+        string typeBId FK\
+        float compatibilityScore\
+        float complementarityScore\
+        string contextType\
+    \}\
+}
